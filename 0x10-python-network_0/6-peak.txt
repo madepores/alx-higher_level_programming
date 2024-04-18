@@ -1,1 +1,5 @@
+<<<<<<< HEAD
 O(log(n))
+=======
+0(log(n))
+>>>>>>> 96b30d2daebdaab3e1ee0809c6cde423ee178941
