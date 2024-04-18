@@ -7,4 +7,4 @@ if [ "$#" -ne 1 ]; then
 fi
 
 # Send POST request with specified parameters using curl
-curl -sX POST -d "email=test@gmail.com&subject=I will always be here for PLD" "$1"
+curl -sX POST -d "email=test@gmail.com&subject=I will always be here for PLD" "${1}"
