@@ -1,18 +1,30 @@
 #!/usr/bin/python3
-import requests
-import sys
+"""
+Please list 10 commits (from the most recent to oldest) of the repository
+“rails” by the user “rails”
+You must use the GitHub API, here is the documentation
+https://developer.github.com/v3/repos/commits/
+Print all commits by: `<sha>: <author name>` (one by line)
+"""
 
-if __name__ == "__main__":
-    repo_name = sys.argv[1]
-    owner_name = sys.argv[2]
 
-    url = f'https://api.github.com/repos/madepores/alx-higher_level_programming/commits'
+if __name__ == '__main__':
+    from requests import get
+    from sys import argv
 
-    response = requests.get(url)
+    repo = argv[1]
+    owner = argv[2]
+    i = 0
 
-    commits = response.json()
+    URL = "https://api.github.com/repos/{}/{}/commits".format(owner, repo)
 
-    for commit in commits[:10]:
-        sha = commit['sha']
-        author_name = commit['commit']['author']['name']
-        print(f"{sha}: {author_name}")
+    response = get(URL)
+    json = response.json()
+
+    for element in json:
+        if i > 9:
+            break
+        sha = element.get('sha')
+        author = element.get('commit').get('author').get('name')
+        print("{}: {}".format(sha, author))
+        i += 1
